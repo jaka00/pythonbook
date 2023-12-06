@@ -11,3 +11,8 @@ class MentorTestCase(TestCase):
     def test_get_users_list_should_success(self):
         response = self.client.get(reverse_lazy("usersapp:mentors"))
         self.assertEqual(response.status_code, 200)
+
+class ProfileTestCase(TestCase):
+    def test_get_profile_list_should_success(self):
+        response = self.client.get(reverse_lazy("usersapp:profiles"))
+        self.assertEqual(response.status_code, 200)
