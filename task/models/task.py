@@ -2,6 +2,7 @@ from django.db import models
 from users.models.mentors import Mentor
 from users.models.profiles import Profile
 from django.contrib.auth.models import User
+from students.models import Student
 
 difficulty_choices = (
     (1, "Очень лёгкий"),
@@ -15,9 +16,18 @@ class Task(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
     difficulty = models.IntegerField(choices=difficulty_choices)
-    created_by = models.ForeignKey(to=User, on_delete=models.PROTECT)
-    # created_by = models.OneToOneField(Mentor, on_delete=models.CASCADE)
-    # upload_by = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    created_by = models.ForeignKey(
+        User,
+        models.PROTECT,
+        related_name='task_created'
+    )
+
+    views_by = models.ManyToManyField(
+        to=User,
+        blank=True,
+        related_name='task_view',
+    )
+
 
     def __str__(self):
         return self.name
@@ -29,6 +39,11 @@ class Task(models.Model):
 class Answer(models.Model):
     task =  models.ForeignKey(Task,on_delete=models.CASCADE)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    student = models.ForeignKey(
+        Student,models.CASCADE,
+        blank=True, null=True,
+        related_name='answer_list'
+        )
     txt = models.TextField()
     correctly = models.BooleanField(default=False)
 
