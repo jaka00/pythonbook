@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from task.models import Task
+from task.models.task import *
 from users.serializers import UserSerializer
 from django.contrib.auth.models import User
 
@@ -37,3 +37,8 @@ class TaskAddViewSerializer(serializers.ModelSerializer):
         user_object = User.objects.get(id=user_id)
         instance.views_by.add(user_object)
         return instance
+
+class AnswerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Answer
+        fields = ['txt']

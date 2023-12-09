@@ -1,6 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveAPIView, UpdateAPIView, DestroyAPIView
+from rest_framework.generics import CreateAPIView,RetrieveAPIView, RetrieveUpdateDestroyAPIView, ListCreateAPIView,ListAPIView,UpdateAPIView,DestroyAPIView
+from rest_framework import viewsets
 from .serializers import *
 from .models import *
 
@@ -64,3 +65,15 @@ class StudentGUpdateAPIView(UpdateAPIView):
 class StudentGDestroyAPIView(DestroyAPIView):  # delete 
     queryset = Student.objects.all()
     serializer_class = StudentsSerializer
+
+class StudentGenericDetailAPIView(RetrieveUpdateDestroyAPIView):
+    queryset = Student.objects.all()
+    serializer_class = StudentsSerializer
+    
+class StudentsGenericView(ListCreateAPIView):
+    queryset = Student.objects.all()
+    serializer_class = StudentCreateSerializer
+
+class StudentViewSet(viewsets.ModelViewSet):
+    queryset = Student.objects.all()
+    serializer_class = StudentCreateSerializer

@@ -9,17 +9,20 @@ class TestStudentList(TestCase):
             {
                 'user': 2,
                 'phone_number': 'test phone number 0',
-                'programming_language': 'test prg lng 0'
+                'programming_language': 'test prg lng 0',
+                'answer_count': 0
             },
             {   
                 'user': 3,
                 'phone_number': 'test phone number 1',
-                'programming_language': 'test prg lng 1'
+                'programming_language': 'test prg lng 1',
+                'answer_count': 0
             },
             {   
                 'user': 4, 
                 'phone_number': 'test phone number 2',
-                'programming_language': 'test prg lng 2'
+                'programming_language': 'test prg lng 2',
+                'answer_count': 0
             }
         ]
 

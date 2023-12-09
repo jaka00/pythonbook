@@ -23,5 +23,5 @@ urlpatterns = [
     path("api/task/", include("task.urls", namespace="task")),
     path('api/answer/', include("task.answer_urls", namespace="answer")),
     # path('api/', include("task.urls", namespace="answer")),
-    path('api/student/', include("students.urls", namespace="student")),
+    path('api/students/', include("students.urls", namespace="student")),
 ]

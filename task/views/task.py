@@ -88,4 +88,3 @@ class TasksGenericView(ListCreateAPIView):
 class TaskViewSet(viewsets.ModelViewSet):
     queryset = Task.objects.all()
     serializer_class = TaskCreateSerializer
-    seqtd = AnswerDetailAPIView(all)
