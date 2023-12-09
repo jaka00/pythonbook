@@ -38,7 +38,7 @@ class Task(models.Model):
 #decision
 class Answer(models.Model):
     task =  models.ForeignKey(Task,on_delete=models.CASCADE)
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    # profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
     student = models.ForeignKey(
         Student,models.CASCADE,
         blank=True, null=True,

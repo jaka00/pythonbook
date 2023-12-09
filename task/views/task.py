@@ -2,6 +2,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from task.models.task import *
 from task.serializers.task import *
+from rest_framework.generics import RetrieveAPIView, RetrieveUpdateDestroyAPIView, ListCreateAPIView
+from rest_framework import viewsets
 
 
 class TaskDetailAPIView(APIView):
@@ -74,3 +76,16 @@ class AnswerDetailAPIView(APIView):
         answer_object= Answer.objects.get(pk=kwargs.get("pk"))  
         answer_object.delete()
     
+# class TaskGenericDetailAPIView(RetrieveAPIView):
+class TaskGenericDetailAPIView(RetrieveUpdateDestroyAPIView):
+    queryset = Task.objects.all()
+    serializer_class = TaskSerializer
+
+class TasksGenericView(ListCreateAPIView):
+    queryset = Task.objects.all()
+    serializer_class = TaskCreateSerializer
+
+class TaskViewSet(viewsets.ModelViewSet):
+    queryset = Task.objects.all()
+    serializer_class = TaskCreateSerializer
+    seqtd = AnswerDetailAPIView(all)
